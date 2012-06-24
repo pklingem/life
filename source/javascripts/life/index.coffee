@@ -5,3 +5,5 @@
 
 $(document).ready ->
   Life.initialize(10, 10)
+
+  $('#regenerate').click -> Life.regenerate()
