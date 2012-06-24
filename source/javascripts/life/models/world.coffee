@@ -8,3 +8,8 @@ class window.World extends Backbone.Model
     @get('rows').each (row) ->
       row.get('cells').each (cell) ->
         cell.meetNeighbors()
+
+  generateFateGrid: ->
+    @get('rows').map (row) ->
+      row.get('cells').map (cell) ->
+        cell.shouldLive()
