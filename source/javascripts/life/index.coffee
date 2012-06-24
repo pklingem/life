@@ -4,4 +4,4 @@
 #= require life/application
 
 $(document).ready ->
-  Life.initialize()
+  Life.initialize(10, 10)

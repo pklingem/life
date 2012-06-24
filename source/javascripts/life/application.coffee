@@ -1,12 +1,16 @@
 window.Life = {
   world: null
+  x: null
+  y: null
 
-  initialize: (x = 10, y = 10) ->
+  initialize: (x, y) ->
+    @x = x
+    @y = y
     states = [true, false]
-    rows = for row in [1..y]
-      cells = for cell in [1..x]
+    rows = for row in [0..y-1]
+      cells = for column in [0..x-1]
         isAlive = states[Math.floor(Math.random()*states.length)]
-        new Cell(isAlive: isAlive)
+        new Cell(x: column, y: row, isAlive: isAlive)
       cellsCollection = new CellsCollection(cells)
       row = new Row(cells: cellsCollection)
     rowsCollection = new RowsCollection(rows)
@@ -16,6 +20,8 @@ window.Life = {
       model: @world
       el: $('#world')
     )
-
     worldView.render()
+
+    @world.meetNeighbors()
+
 }
