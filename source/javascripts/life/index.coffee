@@ -7,3 +7,7 @@ $(document).ready ->
   Life.initialize(100, 100)
 
   $('#regenerate').click -> Life.regenerate()
+  $('#play').click ->
+    Life.playing = setInterval(Life.regenerate, 3000)
+  $('#pause').click ->
+    clearInterval(Life.playing)
