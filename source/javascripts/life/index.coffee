@@ -4,6 +4,6 @@
 #= require life/application
 
 $(document).ready ->
-  Life.initialize(10, 10)
+  Life.initialize(100, 100)
 
   $('#regenerate').click -> Life.regenerate()
