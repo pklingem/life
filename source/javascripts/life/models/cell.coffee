@@ -13,6 +13,29 @@ class window.Cell extends Backbone.Model
       Life.world.getCell(@w())
     ]
     @set('neighbors', new CellsCollection(neighbors))
+    @set('liveNeighborsCount', @countLiveNeighbors())
+
+  countLiveNeighbors: ->
+    @get('neighbors').reduce(
+      ( (result, cell) ->
+        if cell.get('isAlive') then ++result else result
+      ), 0
+    )
+
+  shouldLive: ->
+    liveNeighborsCount = @get('liveNeighborsCount')
+    if @get('isAlive')
+      if liveNeighborsCount < 2      # under-population
+        false
+      else if liveNeighborsCount > 3 # overcrowding
+        false
+      else                           # survival
+        true
+    else
+      if liveNeighborsCount == 3     # reproduction
+        true
+      else                           # remain dead
+        false
 
   x: null
   y: null
