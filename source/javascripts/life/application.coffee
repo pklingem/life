@@ -1,12 +1,12 @@
 window.Life = {
   world: null
 
-  initialize: (x = 100, y = 100) ->
-    states = ['alive', 'dead']
+  initialize: (x = 10, y = 10) ->
+    states = [true, false]
     rows = for row in [1..y]
       cells = for cell in [1..x]
-        state = states[Math.floor(Math.random()*states.length)]
-        new Cell(state: state)
+        isAlive = states[Math.floor(Math.random()*states.length)]
+        new Cell(isAlive: isAlive)
       cellsCollection = new CellsCollection(cells)
       row = new Row(cells: cellsCollection)
     rowsCollection = new RowsCollection(rows)

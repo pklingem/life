@@ -1,5 +1,11 @@
 class window.CellView extends Backbone.View
+  initialize: ->
+    @model.bind('change', @render)
+
   tagName: 'td'
-  render: ->
-    $(@el).addClass(@model.get('state'))
+  render: =>
+    if @model.get('isAlive')
+      $(@el).addClass('alive')
+    else
+      $(@el).removeClass('alive')
     @
