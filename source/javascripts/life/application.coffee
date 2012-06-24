@@ -24,4 +24,12 @@ window.Life = {
 
     @world.meetNeighbors()
 
+  regenerate: ->
+    fateGrid = @world.get('rows').map (row) ->
+      row.get('cells').map (cell) ->
+        cell.shouldLive()
+
+    for y in [0..@y-1]
+      for x in [0..@x-1]
+        Life.world.getCell([x,y]).set('isAlive', fateGrid[y][x])
 }
