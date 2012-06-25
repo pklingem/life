@@ -2,7 +2,7 @@ class Life.model.Cell extends Backbone.Model
   isAlive: false
 
   meetNeighbors: ->
-    world = Life.model.world
+    world = @get('world')
     neighbors = [
       world.getCell(@nw())
       world.getCell(@n())
@@ -40,10 +40,10 @@ class Life.model.Cell extends Backbone.Model
   x: null
   y: null
 
-  wrapEast:  -> if (@get('x') - 1) < 0 then Life.model.world.get('x') - 1 else @get('x') - 1
-  wrapWest:  -> if (@get('x') + 1) == Life.model.world.get('x') then 0 else @get('x') + 1
-  wrapNorth: -> if (@get('y') - 1) < 0 then Life.model.world.get('y') - 1 else @get('y') - 1
-  wrapSouth: -> if (@get('y') + 1) == Life.model.world.get('y') then 0 else @get('y') + 1
+  wrapEast:  -> if (@get('x') - 1) < 0 then @get('world').get('x') - 1 else @get('x') - 1
+  wrapWest:  -> if (@get('x') + 1) == @get('world').get('x') then 0 else @get('x') + 1
+  wrapNorth: -> if (@get('y') - 1) < 0 then @get('world').get('y') - 1 else @get('y') - 1
+  wrapSouth: -> if (@get('y') + 1) == @get('world').get('y') then 0 else @get('y') + 1
 
   nw: -> [@wrapWest(), @wrapNorth()]
   n:  -> [@get('x'),   @wrapNorth()]

@@ -6,9 +6,15 @@ class Life.model.World extends Backbone.Model
   initialize: ->
     rows = for row in [0..@get('y')-1]
       cells = for column in [0..@get('x')-1]
-        new Life.model.Cell(x: column, y: row, isAlive: @randomState())
+        new Life.model.Cell(
+          world: @
+          x: column
+          y: row
+          isAlive: @randomState()
+        )
       new Life.model.Row(cells: new Life.model.Cells(cells))
     @set('rows', new Life.model.Rows(rows))
+    @meetNeighbors()
 
   getCell: (coordinates) ->
     x = coordinates[0]
@@ -18,7 +24,7 @@ class Life.model.World extends Backbone.Model
   meetNeighbors: ->
     @get('rows').each (row) ->
       row.get('cells').each (cell) ->
-        cell.meetNeighbors()
+        cell.meetNeighbors(@)
 
   generateFateGrid: ->
     @get('rows').map (row) ->

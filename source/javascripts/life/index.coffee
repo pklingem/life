@@ -9,7 +9,6 @@ $(document).ready ->
     el: $('#world')
   )
   worldView.render()
-  Life.model.world.meetNeighbors()
 
   $('#regenerate').click -> Life.model.world.regenerate()
   $('#play').click ->
