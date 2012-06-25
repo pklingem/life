@@ -1,4 +1,4 @@
-class window.CellView extends Backbone.View
+class Life.view.Cell extends Backbone.View
   initialize: ->
     @model.bind('change', @render)
 

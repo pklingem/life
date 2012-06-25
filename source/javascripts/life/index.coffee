@@ -1,13 +1,18 @@
-#= require life/models
-#= require life/collections
-#= require life/views
 #= require life/application
+#= require life/models
+#= require life/views
 
 $(document).ready ->
-  Life.initialize(100, 100)
+  Life.model.world = new Life.model.World(x: 100, y: 100)
+  worldView = new Life.view.World(
+    model: Life.model.world
+    el: $('#world')
+  )
+  worldView.render()
+  Life.model.world.meetNeighbors()
 
-  $('#regenerate').click -> Life.regenerate()
+  $('#regenerate').click -> Life.model.world.regenerate()
   $('#play').click ->
-    Life.playing = setInterval(Life.regenerate, 3000)
+    Life.model.world.set('playing', setInterval(Life.model.world.regenerate, 3000))
   $('#pause').click ->
-    clearInterval(Life.playing)
+    clearInterval(Life.model.world.get('playing'))

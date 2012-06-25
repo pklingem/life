@@ -1,2 +1,2 @@
-class window.Row extends Backbone.Model
+class Life.model.Row extends Backbone.Model
   fart: 'face'

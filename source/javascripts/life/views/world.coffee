@@ -1,8 +1,8 @@
-class window.WorldView extends Backbone.View
+class Life.view.World extends Backbone.View
   initialize: ->
     rows = @model.get('rows').models
     @_rowViews = _(rows).map (row) ->
-      new RowView(model: row)
+      new Life.view.Row(model: row)
 
   render: ->
     $(@el).empty()
