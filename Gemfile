@@ -1,5 +1,3 @@
 source :rubygems
 
-gem 'middleman'
-gem 'haml'
-gem 'sass'
+gem 'middleman', '~> 3.2'
